@@ -26,10 +26,16 @@ public class DeptController_Consumer {
 	public Dept get(@PathVariable("id") Long id) {
 		return restTemplate.getForObject(REST_URL_PREFIX + "/dept/get/" + id, Dept.class);
 	}
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/consumer/dept/list")
 	public List<Dept> list() {
 		return restTemplate.getForObject(REST_URL_PREFIX + "/dept/list", List.class);
+	}
+	//测试@ebalbleDiscoveryClient，消费者可以调用服务发现
+	@RequestMapping(value = "consumer/dept/discovery")
+	public Object discovery() {
+		return restTemplate.getForObject(REST_URL_PREFIX + "/dept/discovery", Object.class);
 	}
 
 }
